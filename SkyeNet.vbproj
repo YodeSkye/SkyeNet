@@ -1,0 +1,68 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+	<TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
+	<StartupObject>SkyeNet.Program</StartupObject>
+    <UseWindowsForms>true</UseWindowsForms>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
+    <ApplicationIcon>My Project\IconSkyeNet.ico</ApplicationIcon>
+    <OptionStrict>On</OptionStrict>
+	<AssemblyVersion>1.0.0.0</AssemblyVersion>
+	<ProductVersion>1.0.0.0</ProductVersion>
+	<FileVersion>1.0.0.0</FileVersion>
+	<Version>1.0.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="My Project\IconSkyeNet.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SkyeLibrary" Version="1.4.55" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="AppSettings.Designer.vb">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppSettings.settings</DependentUpon>
+    </Compile>
+    <Compile Update="My Project\Application.Designer.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Update="Resources.Designer.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources.resx">
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="AppSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>AppSettings.Designer.vb</LastGenOutput>
+    </None>
+    <None Update="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>
