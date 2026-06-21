@@ -15,7 +15,7 @@ Option Explicit On
 Namespace My
     
     <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "18.5.0.0")>  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "18.7.0.0")>  _
     Partial Friend NotInheritable Class AppSettings
         Inherits Global.System.Configuration.ApplicationSettingsBase
         
@@ -36,6 +36,30 @@ Namespace My
             End Get
             Set
                 Me("InterfaceName") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Light")>  _
+        Public Property Theme() As String
+            Get
+                Return CType(Me("Theme"),String)
+            End Get
+            Set
+                Me("Theme") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property ThemeAuto() As Boolean
+            Get
+                Return CType(Me("ThemeAuto"),Boolean)
+            End Get
+            Set
+                Me("ThemeAuto") = value
             End Set
         End Property
     End Class

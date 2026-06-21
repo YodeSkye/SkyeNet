@@ -1,6 +1,7 @@
 ﻿
 Imports System.Net.NetworkInformation
 Imports System.Windows.Forms.Design
+Imports Skye.UI
 
 Public Class MainForm
 
@@ -29,12 +30,21 @@ Public Class MainForm
                 Skye.Common.Log.Write("THREAD EXCEPTION: " & e.Exception.ToString())
             End Sub
 
+        ' Theme
+        If My.AppSettings.Default.ThemeAuto Then
+            Skye.UI.ThemeManager.SetTheme(Skye.UI.ThemeManager.DetectWindowsTheme())
+        Else
+            Skye.UI.ThemeManager.CurrentTheme = Skye.UI.SkyeThemes.GetTheme(My.AppSettings.Default.Theme)
+        End If
+        AddHandler Skye.UI.ThemeManager.ThemeChanged, AddressOf OnThemeChanged
+
         Tray = New NotifyIcon() With {.Icon = My.Resources.IconSkyeNet, .Visible = True, .Text = "SkyeNet - Monitoring Network Profile"}
         Menu = New ContextMenuStrip With {.Font = App.CMFont}
         Menu.Items.Add("Settings", My.Resources.ImageSettings16, AddressOf OpenSettings)
         Menu.Items.Add("Log", My.Resources.ImageLog16, AddressOf OpenLog)
         Menu.Items.Add("Exit", My.Resources.ImageExit16, AddressOf ExitApp)
         Tray.ContextMenuStrip = Menu
+        Menu.Renderer = New Skye.UI.SkyeMenuRenderer
 
         AddHandler NetworkChange.NetworkAddressChanged, AddressOf NetworkChanged
 
@@ -64,6 +74,7 @@ Public Class MainForm
     End Sub
     Private Sub OpenLog(sender As Object, e As EventArgs)
         Skye.Common.Log.ShowViewer()
+        Skye.UI.ThemeManager.ApplyThemeToAllOpenForms()
     End Sub
     Private Sub ExitApp(sender As Object, e As EventArgs)
         Tray.Visible = False
@@ -77,6 +88,9 @@ Public Class MainForm
     End Sub
     Private Sub TimerCheckState_Tick(sender As Object, e As EventArgs)
         EnforceCategory()
+    End Sub
+    Private Sub OnThemeChanged(sender As Object, e As EventArgs)
+        Skye.UI.ThemeManager.ApplyThemeToAllOpenForms()
     End Sub
 
     ' Methods

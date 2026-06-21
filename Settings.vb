@@ -5,6 +5,7 @@ Public Class Settings
     Private Sub SettingsForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadInterfaces()
         SetInterfaceLabel()
+        Skye.UI.ThemeManager.ApplyTheme(Me)
     End Sub
 
     ' Control Events
