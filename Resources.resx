@@ -130,6 +130,9 @@
   <data name="ImageLog16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\ImageLog16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ImageSave32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>My Project\ImageSave32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ImageSettings16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\ImageSettings16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

@@ -4,6 +4,7 @@ Imports System.Reflection
 Module App
 
     ' DECLARATIONS
+    Friend CMFont As New Font("Segoe UI", 12)
 
     ' METHODS
     Friend Function GetAssemblyName() As String

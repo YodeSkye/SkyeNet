@@ -1,26 +1,25 @@
-﻿Imports System.Diagnostics
-
+﻿
 Public Class Settings
 
     ' Form Events
     Private Sub SettingsForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadInterfaces()
-        TxtInterface.Text = My.AppSettings.Default.InterfaceName
+        SetInterfaceLabel()
     End Sub
 
     ' Control Events
-    Private Sub LstInterfaces_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LstInterfaces.SelectedIndexChanged
-        TxtInterface.Text = LstInterfaces.SelectedItem.ToString()
+    Private Sub LstInterfaces_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LBoxInterfaces.SelectedIndexChanged
+        My.AppSettings.Default.InterfaceName = LBoxInterfaces.SelectedItem.ToString()
+        SetInterfaceLabel()
     End Sub
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        My.AppSettings.Default.InterfaceName = TxtInterface.Text.Trim()
         My.AppSettings.Default.Save()
         Close()
     End Sub
 
     ' Methods
     Private Sub LoadInterfaces()
-        LstInterfaces.Items.Clear()
+        LBoxInterfaces.Items.Clear()
 
         Try
             Dim psi As New ProcessStartInfo With {
@@ -33,14 +32,17 @@ Public Class Settings
             Using p = Process.Start(psi)
                 Dim output = p.StandardOutput.ReadToEnd()
                 For Each line In output.Split({Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries)
-                    LstInterfaces.Items.Add(line.Trim())
+                    LBoxInterfaces.Items.Add(line.Trim())
                 Next
             End Using
         Catch ex As Exception
-            LstInterfaces.Items.Add("Error Loading Interfaces")
+            LBoxInterfaces.Items.Add("Error Loading Interfaces")
             Skye.Common.Log.Write("Settings failed to load network interfaces: " & ex.Message)
         End Try
 
+    End Sub
+    Private Sub SetInterfaceLabel()
+        LblSelectedInterfaceName.Text = My.AppSettings.Default.InterfaceName.Trim()
     End Sub
 
 End Class

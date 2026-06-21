@@ -30,7 +30,7 @@ Public Class MainForm
             End Sub
 
         Tray = New NotifyIcon() With {.Icon = My.Resources.IconSkyeNet, .Visible = True, .Text = "SkyeNet - Monitoring Network Profile"}
-        Menu = New ContextMenuStrip()
+        Menu = New ContextMenuStrip With {.Font = App.CMFont}
         Menu.Items.Add("Settings", My.Resources.ImageSettings16, AddressOf OpenSettings)
         Menu.Items.Add("Log", My.Resources.ImageLog16, AddressOf OpenLog)
         Menu.Items.Add("Exit", My.Resources.ImageExit16, AddressOf ExitApp)
@@ -55,7 +55,8 @@ Public Class MainForm
 
         Skye.Common.Log.Write("..." & App.GetAssemblyName() & " Closed")
     End Sub
-    'Control Events
+
+    ' Control Events
     Private Sub OpenSettings(sender As Object, e As EventArgs)
         Using f As New Settings()
             f.ShowDialog()
@@ -111,7 +112,6 @@ Public Class MainForm
             Return String.Empty
         End Try
     End Function
-
     Private Sub SetNetworkPrivate(interfaceName As String)
         Try
             Dim psi As New ProcessStartInfo With {
