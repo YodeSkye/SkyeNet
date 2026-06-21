@@ -28,6 +28,9 @@ Partial Class Settings
         LblInterfaces = New Skye.UI.Label()
         LblSelectedInterfaceName = New Skye.UI.Label()
         LblSelectedInterface = New Skye.UI.Label()
+        CoBoxTheme = New Skye.UI.ComboBox()
+        LblTheme = New Skye.UI.Label()
+        ChkBoxThemeAuto = New CheckBox()
         SuspendLayout()
         ' 
         ' LBoxInterfaces
@@ -41,8 +44,9 @@ Partial Class Settings
         ' 
         ' BtnSave
         ' 
+        BtnSave.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         BtnSave.Image = My.Resources.Resources.ImageSave32
-        BtnSave.Location = New Point(13, 221)
+        BtnSave.Location = New Point(13, 340)
         BtnSave.Margin = New Padding(4)
         BtnSave.Name = "BtnSave"
         BtnSave.Size = New Size(48, 48)
@@ -73,16 +77,46 @@ Partial Class Settings
         LblSelectedInterface.TabIndex = 5
         LblSelectedInterface.Text = "Selected Interface:"
         ' 
+        ' CoBoxTheme
+        ' 
+        CoBoxTheme.DropDownStyle = ComboBoxStyle.DropDownList
+        CoBoxTheme.FormattingEnabled = True
+        CoBoxTheme.Location = New Point(13, 258)
+        CoBoxTheme.Name = "CoBoxTheme"
+        CoBoxTheme.Size = New Size(168, 30)
+        CoBoxTheme.TabIndex = 6
+        ' 
+        ' LblTheme
+        ' 
+        LblTheme.Location = New Point(12, 237)
+        LblTheme.Name = "LblTheme"
+        LblTheme.Size = New Size(100, 23)
+        LblTheme.TabIndex = 7
+        LblTheme.Text = "Theme:"
+        ' 
+        ' ChkBoxThemeAuto
+        ' 
+        ChkBoxThemeAuto.AutoSize = True
+        ChkBoxThemeAuto.Location = New Point(13, 285)
+        ChkBoxThemeAuto.Name = "ChkBoxThemeAuto"
+        ChkBoxThemeAuto.Size = New Size(62, 25)
+        ChkBoxThemeAuto.TabIndex = 8
+        ChkBoxThemeAuto.Text = "Auto"
+        ChkBoxThemeAuto.UseVisualStyleBackColor = True
+        ' 
         ' Settings
         ' 
         AutoScaleDimensions = New SizeF(9F, 21F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(550, 282)
+        ClientSize = New Size(550, 401)
+        Controls.Add(CoBoxTheme)
         Controls.Add(LblSelectedInterface)
         Controls.Add(LblSelectedInterfaceName)
         Controls.Add(BtnSave)
         Controls.Add(LBoxInterfaces)
         Controls.Add(LblInterfaces)
+        Controls.Add(LblTheme)
+        Controls.Add(ChkBoxThemeAuto)
         Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Margin = New Padding(4)
@@ -90,6 +124,7 @@ Partial Class Settings
         StartPosition = FormStartPosition.CenterScreen
         Text = "Settings"
         ResumeLayout(False)
+        PerformLayout()
     End Sub
 
     Friend WithEvents LBoxInterfaces As ListBox
@@ -97,4 +132,7 @@ Partial Class Settings
     Friend WithEvents LblInterfaces As Skye.UI.Label
     Friend WithEvents LblSelectedInterfaceName As Skye.UI.Label
     Friend WithEvents LblSelectedInterface As Skye.UI.Label
+    Friend WithEvents CoBoxTheme As Skye.UI.ComboBox
+    Friend WithEvents LblTheme As Skye.UI.Label
+    Friend WithEvents ChkBoxThemeAuto As CheckBox
 End Class

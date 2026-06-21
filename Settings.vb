@@ -1,17 +1,44 @@
 ﻿
+Imports Skye.UI
+
 Public Class Settings
 
     ' Form Events
     Private Sub SettingsForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Skye.UI.ThemeManager.ApplyTheme(Me)
+        For Each thm In SkyeThemes.AllThemes
+            CoBoxTheme.Items.Add(thm.Name)
+        Next
+        CoBoxTheme.SelectedItem = My.AppSettings.Default.Theme
+        ChkBoxThemeAuto.Checked = My.AppSettings.Default.ThemeAuto
+        SetThemesList()
         LoadInterfaces()
         SetInterfaceLabel()
-        Skye.UI.ThemeManager.ApplyTheme(Me)
     End Sub
 
     ' Control Events
     Private Sub LstInterfaces_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LBoxInterfaces.SelectedIndexChanged
         My.AppSettings.Default.InterfaceName = LBoxInterfaces.SelectedItem.ToString()
         SetInterfaceLabel()
+    End Sub
+    Private Sub CoBxTheme_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CoBoxTheme.SelectedIndexChanged
+        Dim selectedName As String = CoBoxTheme.SelectedItem.ToString()
+        Dim selected As Skye.UI.SkyeTheme = Skye.UI.SkyeThemes.GetTheme(selectedName)
+        My.AppSettings.Default.Theme = selected.Name
+        If Not My.AppSettings.Default.ThemeAuto Then
+            Skye.UI.ThemeManager.SetTheme(selected)
+        End If
+        My.AppSettings.Default.Save()
+    End Sub
+    Private Sub ChkBoxThemeAuto_Click(sender As Object, e As EventArgs) Handles ChkBoxThemeAuto.Click
+        My.AppSettings.Default.ThemeAuto = ChkBoxThemeAuto.Checked
+        SetThemesList()
+        If My.AppSettings.Default.ThemeAuto Then
+            Skye.UI.ThemeManager.SetTheme(Skye.UI.ThemeManager.DetectWindowsTheme())
+        Else
+            Skye.UI.ThemeManager.SetTheme(Skye.UI.SkyeThemes.GetTheme(My.AppSettings.Default.Theme))
+        End If
+        My.AppSettings.Default.Save()
     End Sub
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         My.AppSettings.Default.Save()
@@ -44,6 +71,13 @@ Public Class Settings
     End Sub
     Private Sub SetInterfaceLabel()
         LblSelectedInterfaceName.Text = My.AppSettings.Default.InterfaceName.Trim()
+    End Sub
+    Private Sub SetThemesList()
+        If My.AppSettings.Default.ThemeAuto Then
+            CoBoxTheme.Enabled = False
+        Else
+            CoBoxTheme.Enabled = True
+        End If
     End Sub
 
 End Class
