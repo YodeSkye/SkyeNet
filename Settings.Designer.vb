@@ -118,6 +118,7 @@ Partial Class Settings
         Controls.Add(LblTheme)
         Controls.Add(ChkBoxThemeAuto)
         Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        FormBorderStyle = FormBorderStyle.Fixed3D
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Margin = New Padding(4)
         Name = "Settings"

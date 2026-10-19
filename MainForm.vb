@@ -8,7 +8,7 @@ Public Class MainForm
     ' Declarations
     Private Tray As NotifyIcon
     Private Shadows Menu As ContextMenuStrip
-    Private TimerCheckState As Timer
+    Private TimerCheckState As New Timer() With {.Interval = 10000}
 
     ' Form Events
     Public Sub New()
@@ -47,9 +47,8 @@ Public Class MainForm
         Menu.Renderer = New Skye.UI.SkyeMenuRenderer
 
         AddHandler NetworkChange.NetworkAddressChanged, AddressOf NetworkChanged
-
-        TimerCheckState = New Timer() With {.Interval = 10000}
         AddHandler TimerCheckState.Tick, AddressOf TimerCheckState_Tick
+
         TimerCheckState.Start()
 
     End Sub
