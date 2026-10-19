@@ -121,6 +121,7 @@ Partial Class Settings
         FormBorderStyle = FormBorderStyle.Fixed3D
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Margin = New Padding(4)
+        MaximizeBox = False
         Name = "Settings"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Settings"
